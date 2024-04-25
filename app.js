@@ -2,10 +2,16 @@ import express from "express";
 const app = express();
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
+import dotenv from 'dotenv';
 import user from "./model/user.js";
 app.use(express.json());
 
+
+
+dotenv.config();
+
+const password = process.env.DB_PASSWORD;
+const username = process.env.DB_USERNAME;
 
 
 
@@ -91,10 +97,10 @@ existingUser = await user.findOne({email:email});
 
 
 
-mongoose.connect(`mongodb+srv://shivam:shivam123@cluster0.yr7vygl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`).then(()=>{
+mongoose.connect(`mongodb+srv://${username}:${password}@cluster0.yr7vygl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`).then(()=>{
     console.log("database connected successfully");
 }).catch((e) => {
-    console.log("error while connect to db");
+    console.log("error while connect to db",e);
   });
   
 
