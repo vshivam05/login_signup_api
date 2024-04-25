@@ -16,7 +16,7 @@ const username = process.env.DB_USERNAME;
 
 
 // to get all users ................................
-app.get("/", async (req,res)=>{
+app.get( "/", async (req,res)=>{
 
     let users;
 try{
